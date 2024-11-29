@@ -25,6 +25,21 @@ const menuItems = [
     label: "File",
     submenu: [
       {
+        label: "New Window",
+        click: async () => {
+          const win2 = new BrowserWindow({
+            show: false,
+            backgroundColor: "#2e2c29",
+            height: 300,
+            width: 400,
+            movable: false,
+          });
+          win2.loadFile("index2.html");
+          // win2.loadURL("https://www.google.com")
+          win2.once("ready-to-show", () => win2.show());
+        },
+      },
+      {
         label: "Exit",
         click: () => app.quit(),
       },
