@@ -29,9 +29,9 @@ const menuItems = [
         click: async () => {
           const win2 = new BrowserWindow({
             show: false,
-            backgroundColor: "#2e2c29",
-            height: 300,
-            width: 400,
+            // backgroundColor: "#2e2c29",
+            height: 600,
+            width: 800,
             // movable: false,
           });
           // win2.webContents.openDevTools();
