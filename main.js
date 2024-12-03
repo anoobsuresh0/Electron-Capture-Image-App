@@ -1,3 +1,9 @@
+
+// Youtube Video : https://youtu.be/kBtYon8KmdU?si=qX6fqVWpSdoPgyNh
+
+
+
+
 const { app, BrowserWindow, Menu, shell, ipcMain } = require("electron");
 const path = require("path");
 
@@ -106,3 +112,10 @@ app.whenReady().then(() => {
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
+
+
+
+
+
+
+

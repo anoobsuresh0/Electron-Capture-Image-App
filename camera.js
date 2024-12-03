@@ -15,4 +15,6 @@ captureButton.addEventListener("click", () => {
   canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
   const dataUrl = canvas.toDataURL();
   window.electronApi.sendImage(dataUrl);
+
+  new Notification("Image Captured", {body: "Image has been captured "});
 });
