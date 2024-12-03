@@ -38,10 +38,14 @@ const menuItems = [
             },
             // movable: false,
           });
-          win2.webContents.openDevTools();
+          // win2.webContents.openDevTools();
           win2.loadFile("camera.html");
           // win2.loadURL("https://www.google.com")
           win2.once("ready-to-show", () => win2.show());
+
+          ipcMain.on("close-window2", () => {
+            win2.close();
+          });
         },
       },
       {
@@ -80,16 +84,17 @@ const createWindow = () => {
       preload: path.join(__dirname, "preload.js"),
     },
   });
+
+  ipcMain.on("get-image", (event, data) => {
+    win.webContents.send("send-image", data);
+  });
+
   win.loadFile("index.html");
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {
   createWindow();
-
-  ipcMain.on("set-image", (event, data) => {
-    console.log(data);
-  });
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
