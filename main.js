@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, shell } = require("electron");
+const { app, BrowserWindow, Menu, shell, ipcMain } = require("electron");
 const path = require("path");
 
 const menuItems = [
@@ -27,14 +27,18 @@ const menuItems = [
       {
         label: "Open Camera",
         click: async () => {
+          //Window 2
           const win2 = new BrowserWindow({
             show: false,
             // backgroundColor: "#2e2c29",
             height: 600,
             width: 800,
+            webPreferences: {
+              preload: path.join(__dirname, "camerPreload.js"),
+            },
             // movable: false,
           });
-          // win2.webContents.openDevTools();
+          win2.webContents.openDevTools();
           win2.loadFile("camera.html");
           // win2.loadURL("https://www.google.com")
           win2.once("ready-to-show", () => win2.show());
@@ -67,6 +71,7 @@ const menuItems = [
 const menu = Menu.buildFromTemplate(menuItems);
 Menu.setApplicationMenu(menu);
 
+// Window 1
 const createWindow = () => {
   const win = new BrowserWindow({
     height: 600,
@@ -76,10 +81,15 @@ const createWindow = () => {
     },
   });
   win.loadFile("index.html");
+  win.webContents.openDevTools();
 };
 
 app.whenReady().then(() => {
   createWindow();
+
+  ipcMain.on("set-image", (event, data) => {
+    console.log(data);
+  });
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {

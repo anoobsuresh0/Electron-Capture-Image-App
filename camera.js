@@ -14,5 +14,5 @@ captureButton.addEventListener("click", () => {
   canvas.height = video.videoHeight;
   canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
   const dataUrl = canvas.toDataURL();
-  imageTag.src = dataUrl;
+  window.electronApi.sendImage(dataUrl);
 });
