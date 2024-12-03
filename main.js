@@ -1,8 +1,7 @@
 
 // Youtube Video : https://youtu.be/kBtYon8KmdU?si=qX6fqVWpSdoPgyNh
 
-
-
+// Check the Awesome Electron Repo for more electron resources: https://github.com/sindresorhus/awesome-electron
 
 const { app, BrowserWindow, Menu, shell, ipcMain } = require("electron");
 const path = require("path");
