@@ -1,4 +1,3 @@
-
 // Youtube Video : https://youtu.be/kBtYon8KmdU?si=qX6fqVWpSdoPgyNh
 
 // Check the Awesome Electron Repo for more electron resources: https://github.com/sindresorhus/awesome-electron
@@ -88,6 +87,7 @@ const createWindow = () => {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
+    icon: path.join(__dirname, "assets", "icon.png"), 
   });
 
   ipcMain.on("get-image", (event, data) => {
@@ -111,10 +111,3 @@ app.whenReady().then(() => {
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
-
-
-
-
-
-
-
